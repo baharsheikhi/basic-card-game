@@ -11,7 +11,7 @@ import java.util.List;
  * and they use an entire deck of cards. The deck of cards are distributed among all the players,
  * so that each player has a subset of cards at any time in the game.
  * Players give up their cards as the game progresses, and the game ends when all players
- * have run out of cards.
+ *  have run out of cards.
  */
 public class GenericStandardDeckGame implements GenericCardGameModel {
   @Override
