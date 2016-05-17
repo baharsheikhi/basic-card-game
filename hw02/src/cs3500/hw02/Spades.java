@@ -13,4 +13,9 @@ public final class Spades extends ASuit {
   Spades(Rank rank) {
     super(rank);
   }
+
+  @Override
+  protected String toStringHelp() {
+    return String.format("%d of Spades", this.getRankValue());
+  }
 }

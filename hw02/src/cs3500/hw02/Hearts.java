@@ -9,4 +9,9 @@ public final class Hearts extends ASuit {
     super(rank);
   }
 
+  @Override
+  protected String toStringHelp() {
+    return String.format("%d of Hearts", this.getRankValue());
+  }
+
 }

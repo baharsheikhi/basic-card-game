@@ -5,7 +5,11 @@ package cs3500.hw02;
  * Hearts
  */
 public interface Suit {
-
+  /**
+   *
+   * @return the rank of this suit
+   */
+  public int getRankValue();
 }
 
 /**
@@ -21,4 +25,21 @@ abstract class ASuit implements Suit {
   }
 
   private final Rank rank;
+
+  @Override
+  public int getRankValue() {
+    return this.rank.getValue();
+  }
+
+  @Override
+  public String toString() {
+      return this.toStringHelp();
+    }
+
+  /**
+   *to help abstract the toString method
+   */
+  protected abstract String toStringHelp();
+
+  //TODO .equals for suits
 }

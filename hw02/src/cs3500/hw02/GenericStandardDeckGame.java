@@ -14,6 +14,7 @@ import java.util.List;
  *  have run out of cards.
  */
 public class GenericStandardDeckGame implements GenericCardGameModel {
+
   @Override
   public List<Integer> getDeck() {
     return null;

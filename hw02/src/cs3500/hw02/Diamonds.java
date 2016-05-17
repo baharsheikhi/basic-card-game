@@ -13,4 +13,9 @@ public final class Diamonds extends ASuit {
   Diamonds(Rank rank) {
     super(rank);
   }
+
+  @Override
+  protected String toStringHelp() {
+    return String.format("%d of Diamonds", this.getRankValue());
+  }
 }

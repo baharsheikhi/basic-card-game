@@ -13,4 +13,9 @@ public final class Clubs extends ASuit {
   Clubs(Rank rank) {
     super(rank);
   }
+
+  @Override
+  protected String toStringHelp() {
+    return String.format("%d of Clubs", this.getRankValue());
+  }
 }

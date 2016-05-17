@@ -5,7 +5,7 @@ package cs3500.hw02;
  * An enumeration to represents suits of cards
  */
 public enum Rank {
-  One(1), Two(2), Three(3), Four(4), Five(5), Six(6), Seven(7), Eight(8), Nine(9), Ten(10),
+  Two(2), Three(3), Four(4), Five(5), Six(6), Seven(7), Eight(8), Nine(9), Ten(10),
   Jack(11), Queen(12), King(13), Ace(14);
 
   /**
@@ -18,6 +18,13 @@ public enum Rank {
 
   private final int value;
 
+  /**
+   *
+   * @return the value of the Rank
+   */
+  public int getValue() {
+    return this.value;
+  }
 
 }
 
