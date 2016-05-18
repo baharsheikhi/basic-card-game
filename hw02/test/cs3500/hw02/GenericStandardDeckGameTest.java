@@ -11,18 +11,22 @@ import java.util.*;
  */
 public class GenericStandardDeckGameTest {
 
-  GenericCardGameModel<Suit> game1 = new GenericStandardDeckGame();
+  GenericCardGameModel<Card> game1 = new GenericStandardDeckGame();
 
   //tests that the deck has 52 cards
   @Test
-  public void getDeckLength() {
-    assertEquals(game1.getDeck().size(), 52);
+  public void getDeckContents() {
+    assertEquals(52, game1.getDeck().size());
+    assertFalse(game1.getDeck().equals(null));
+
+    for (int i = 0; i < game1.getDeck().size(); i++) {
+      assertFalse(game1.getDeck().get(i).equals(null));
+    }
   }
 
   //tests that there are 4 of each rank
   @Test
   public void getDeckRankCount() {
-    int rankOne = 0;
     int rankTwo = 0;
     int rankThree = 0;
     int rankFour = 0;
@@ -36,53 +40,62 @@ public class GenericStandardDeckGameTest {
     int rankQueen = 0;
     int rankKing = 0;
     int rankAce = 0;
-    for (int i = 0; i < 52; i++) {
-      switch (game1.getDeck().get(i).getRankValue()) {
-        case 1:
-          rankOne++;
-          break;
-        case 2:
-          rankTwo++;
-          break;
-        case 3:
-          rankThree++;
-          break;
-        case 4:
-          rankFour++;
-          break;
-        case 5:
-          rankFive++;
-          break;
-        case 6:
-          rankSix++;
-          break;
-        case 7:
-          rankSeven++;
-          break;
-        case 8:
-          rankEight++;
-          break;
-        case 9:
-          rankNine++;
-          break;
-        case 10:
-          rankTen++;
-          break;
-        case 11:
-          rankJack++;
-          break;
-        case 12:
-          rankQueen++;
-          break;
-        case 13:
-          rankKing++;
-          break;
-        case 14:
-          rankAce++;
-          break;
-        default:
+
+    for (int i = 0; i < StandardCard.DECK_SIZE; i++) {
+      String str = game1.getDeck().get(i).toString();
+
+      if (str.contains("2")) {
+        rankTwo++;
       }
-      assertEquals(4, rankOne);
+
+      else if (str.contains("3")) {
+        rankThree++;
+      }
+
+      else if (str.contains("4")) {
+        rankFour++;
+      }
+
+      else if (str.contains("5")) {
+        rankFive++;
+      }
+
+      else if (str.contains("6")) {
+        rankSix++;
+      }
+
+      else if (str.contains("7")) {
+        rankSeven++;
+      }
+
+      else if (str.contains("8")) {
+        rankEight++;
+      }
+
+      else if (str.contains("9")) {
+        rankNine++;
+      }
+
+      else if (str.contains("10")) {
+        rankTen++;
+      }
+
+      else if (str.contains("Jack")) {
+        rankJack++;
+      }
+
+      else if (str.contains("Queen")) {
+        rankQueen++;
+      }
+
+      else if (str.contains("King")) {
+        rankKing++;
+      }
+
+      else if (str.contains("Ace")) {
+        rankAce++;
+      }
+
       assertEquals(4, rankTwo);
       assertEquals(4, rankThree);
       assertEquals(4, rankFour);
@@ -107,21 +120,21 @@ public class GenericStandardDeckGameTest {
     int clubsCount = 0;
     int diamondsCount = 0;
 
-    for(int i = 0; i < 52; i++) {
+    for(int i = 0; i < StandardCard.DECK_SIZE; i++) {
       String str = game1.getDeck().get(i).toString();
-      if (str.contains("Hearts")) {
+      if (str.contains("♥")) {
         heartsCount++;
       }
 
-      else if (str.contains("Spades")) {
+      else if (str.contains("♠")) {
         spadesCount++;
       }
 
-      else if (str.contains("Clubs")) {
+      else if (str.contains("♣")) {
         clubsCount++;
       }
 
-      else if (str.contains("Diamonds")) {
+      else if (str.contains("♦")) {
         diamondsCount++;
       }
     }
@@ -134,14 +147,14 @@ public class GenericStandardDeckGameTest {
 
   @Test
   public void noDuplicatesGetDeck() {
-    List<Suit> copiedDeck = new ArrayList<Suit>();
+    List<Card> copiedDeck = new ArrayList<Card>();
     copiedDeck.addAll(this.game1.getDeck());
 
     for(int i = 0; i < this.game1.getDeck().size(); i++) {
-      Suit current = copiedDeck.get(i);
+      Card current = copiedDeck.get(i);
       copiedDeck.remove(i);
 
-      for (Suit s : copiedDeck) {
+      for (Card s : copiedDeck) {
         assertFalse(current.equals(s));
       }
 
@@ -151,7 +164,7 @@ public class GenericStandardDeckGameTest {
 
   @Test
   public void notSorted() {
-    List<Suit> copiedDeck = new ArrayList<Suit>();
+    List<Card> copiedDeck = new ArrayList<Card>();
     copiedDeck.addAll(this.game1.getDeck());
 
     //sort(copiedDeck); check that the sorted copied deck is not the same as the deck

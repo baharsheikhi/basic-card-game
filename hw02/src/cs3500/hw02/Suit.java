@@ -1,45 +1,30 @@
 package cs3500.hw02;
 
 /**
- * An interface to represent suits, of which there are 4 kinds: Diamonds, Clubs, Spades, and
- * Hearts
+ * An enumeration to represent suits of a card
  */
-public interface Suit {
-  /**
-   *
-   * @return the rank of this suit
-   */
-  public int getRankValue();
-}
-
-/**
- * An abstract class to represent a suit
- */
-abstract class ASuit implements Suit {
-  /**
-   * Constructs a suit based on its rank
-   * @param rank the rank that the suit will have
-   */
-  ASuit(Rank rank) {
-    this.rank = rank;
-  }
-
-  private final Rank rank;
-
-  @Override
-  public int getRankValue() {
-    return this.rank.getValue();
-  }
+public enum Suit {
+  Hearts, Spades, Diamonds, Clubs;
 
   @Override
   public String toString() {
-      return this.toStringHelp();
+    String ret = "";
+    switch (this) {
+      case Hearts:
+        ret+="♥";
+        break;
+      case Spades:
+        ret+="♠";
+        break;
+      case Diamonds:
+        ret+="♦";
+        break;
+      case Clubs:
+        ret+="♣";
+        break;
+      default:
     }
 
-  /**
-   *to help abstract the toString method
-   */
-  protected abstract String toStringHelp();
-
-  //TODO .equals for suits
+    return ret;
+  }
 }
