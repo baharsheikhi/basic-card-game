@@ -33,7 +33,15 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
   }
 
   @Override
-  public void startPlay(int numPlayers, List deck) {
+  public void startPlay(int numPlayers, List<Card> deck) {
+      this.initPlayers(numPlayers);
+
+      for (int i = 0; i < deck.size(); i++) {
+          for (Player p: this.players) {
+              p.addCard(deck.get(i));
+              i++;
+          }
+      }
 
   }
 
@@ -43,8 +51,24 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
   }
 
 
-  //private final List<Card> deck;
-  //private final List<Player> players;
+  private final List<Card> deck;
+  private final List<Player> players;
 
+    /**
+     * adds the given number of players to this game's list of players
+     * @param numPlayers
+     */
+    protected void initPlayers(int numPlayers) {
+      for (int i = 0; i < numPlayers; i++) {
+          players.add(new StandardPlayer());
+      }
+  }
+
+    GenericStandardDeckGame(int numPlayers) {
+        this.deck = this.getDeck();
+        this.startPlay(numPlayers, this.deck);
+    }
 
 }
+
+//TODO REMOVE THE STRING CONSTRUCTOR FOR CARDS

@@ -45,10 +45,10 @@ public interface GenericCardGameModel<K> {
    * placeholders with actual data as applicable:
    * <pre>
    * Number of players:{S}X{NL}
-   * Player{S}1:{S}P11,{S}P12,{S}P13, ...{NL} <i>(Player 1 cards in sorted order)</i>
-   * Player{S}2:{S}P21,{S}P22,{S}P23, ...{NL} <i>(Player 2 cards in sorted order)</i>
+   * cs3500.hw02.Player{S}1:{S}P11,{S}P12,{S}P13, ...{NL} <i>(cs3500.hw02.Player 1 cards in sorted order)</i>
+   * cs3500.hw02.Player{S}2:{S}P21,{S}P22,{S}P23, ...{NL} <i>(cs3500.hw02.Player 2 cards in sorted order)</i>
    * ...
-   * Player{S}X:{S}PX1,{S}PX2,{S}PX3, ...{NL} <i>(Player X cards in sorted order)</i>
+   * cs3500.hw02.Player{S}X:{S}PX1,{S}PX2,{S}PX3, ...{NL} <i>(cs3500.hw02.Player X cards in sorted order)</i>
    *</pre>
    *
    * @return a string that represents the current state of the game
