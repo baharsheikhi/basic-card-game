@@ -144,7 +144,7 @@ public class StandardCard implements Card {
   private final Rank rank;
   private final Suit suit;
   public static final int MAX_RANK_VALUE = 14;
-  public static final int MIN_RANK_VALUE = 14;
+  public static final int MIN_RANK_VALUE = 2;
   public static final int DECK_SIZE = 52;
 
   @Override

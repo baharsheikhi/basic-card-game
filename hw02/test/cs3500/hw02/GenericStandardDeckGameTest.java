@@ -21,6 +21,7 @@ public class GenericStandardDeckGameTest {
 
     for (int i = 0; i < game1.getDeck().size(); i++) {
       assertFalse(game1.getDeck().get(i).equals(null));
+      System.out.println(game1.getDeck().get(i).toString());
     }
   }
 
@@ -80,19 +81,19 @@ public class GenericStandardDeckGameTest {
         rankTen++;
       }
 
-      else if (str.contains("Jack")) {
+      else if (str.contains("J")) {
         rankJack++;
       }
 
-      else if (str.contains("Queen")) {
+      else if (str.contains("Q")) {
         rankQueen++;
       }
 
-      else if (str.contains("King")) {
+      else if (str.contains("K")) {
         rankKing++;
       }
 
-      else if (str.contains("Ace")) {
+      else if (str.contains("A")) {
         rankAce++;
       }
 

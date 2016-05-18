@@ -19,13 +19,7 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
 
   @Override
   public List<Card> getDeck() {
-    //Random rand = new Random();
-    //List<Card> ret = new ArrayList<Card>();
     List<Card> allCards = new ArrayList<Card>();
-
-//    for (int i = 0; i < StandardCard.DECK_SIZE; i++) {
-//      ret.add(null);
-//    }
 
     for (int i = StandardCard.MIN_RANK_VALUE; i <= StandardCard.MAX_RANK_VALUE; i++) {
       allCards.add(new StandardCard("Hearts", i));
@@ -35,15 +29,6 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
     }
 
     Collections.shuffle(allCards);
-
-//    for (Card s: allCards) {
-//      int randPos = rand.nextInt(52);
-//      while (ret.get(randPos) != null) {
-//        randPos = rand.nextInt(52);
-//      }
-//      ret.add(randPos, s);
-//    }
-
     return allCards;
   }
 

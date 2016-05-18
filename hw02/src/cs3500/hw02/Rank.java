@@ -6,7 +6,7 @@ package cs3500.hw02;
  */
 public enum Rank {
   Two("2"), Three("3"), Four("4"), Five("5"), Six("6"), Seven("7"), Eight("8"), Nine("9"), Ten("10"),
-  Jack("Jack"), Queen("Queen"), King("King"), Ace("Ace");
+  Jack("J"), Queen("Q"), King("K"), Ace("A");
 
   /**
    * Constructs a rank based on its value
