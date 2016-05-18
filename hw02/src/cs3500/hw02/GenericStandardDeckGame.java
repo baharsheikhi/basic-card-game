@@ -64,9 +64,15 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
       }
   }
 
-    GenericStandardDeckGame(int numPlayers) {
-        this.deck = this.getDeck();
-        this.startPlay(numPlayers, this.deck);
+//    GenericStandardDeckGame(int numPlayers) {
+//        this.deck = this.getDeck();
+//        this.players = new ArrayList<Player>();
+//        this.startPlay(numPlayers, this.deck);
+//    }
+
+    GenericStandardDeckGame() {
+        this.deck = new ArrayList<Card>();
+        this.players = new ArrayList<Player>();
     }
 
 }

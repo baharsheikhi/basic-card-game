@@ -163,17 +163,18 @@ public class GenericStandardDeckGameTest {
     }
   }
 
-  @Test
-  public void notSorted() {
-    List<Card> copiedDeck = new ArrayList<Card>();
-    copiedDeck.addAll(this.game1.getDeck());
-
-    //sort(copiedDeck); check that the sorted copied deck is not the same as the deck
-
-  }
+    @Test
+    public void differentDeckEachTime() {
+        assertFalse(this.game1.getDeck().equals(this.game1.getDeck()));
+    }
 
   @Test
   public void startPlay() {
+
+      this.game1.startPlay(4, this.game1.getDeck());
+
+
+
 
   }
 
