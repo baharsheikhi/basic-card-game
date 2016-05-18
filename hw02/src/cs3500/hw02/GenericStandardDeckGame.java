@@ -13,10 +13,10 @@ import java.util.List;
  * Players give up their cards as the game progresses, and the game ends when all players
  *  have run out of cards.
  */
-public class GenericStandardDeckGame implements GenericCardGameModel {
+public class GenericStandardDeckGame implements GenericCardGameModel<Suit> {
 
   @Override
-  public List<Integer> getDeck() {
+  public List<Suit> getDeck() {
     return null;
   }
 
