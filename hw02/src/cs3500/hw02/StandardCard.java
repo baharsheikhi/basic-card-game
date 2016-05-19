@@ -2,11 +2,13 @@ package cs3500.hw02;
 
 import com.sun.xml.internal.bind.api.impl.NameConverter;
 
+import java.util.Objects;
+
 /**
  * A class to represent a standard card. It can be ranks 2-Ace with the four suits. Jokers are
  * excluded.
  */
-public class StandardCard implements Card, Comparable<StandardCard> {
+public class StandardCard implements Card {
 
   /**
    *
@@ -91,28 +93,39 @@ public class StandardCard implements Card, Comparable<StandardCard> {
   }
 
   @Override
-  public int compareTo(StandardCard c2) {
-    if (this.suit.compareTo(c2.suit) > 1) {
+  public int compareTo(Card card) {
+    StandardCard c2 = (StandardCard) card;
+    if (this.suit.compareSuits(c2.suit) > 0) {
       return 1;
     }
-    else if (this.suit.compareTo(c2.suit) < 1) {
+    else if (this.suit.compareSuits(c2.suit) < 0) {
       return -1;
     }
     else {
-      return this.rank.compareTo(c2.rank);
+      return this.rank.compareRank(c2.rank);
     }
   }
 
 
-//  @Override
-//  public String toString() {
-//      return this.toStringHelp();
-//    }
+@Override
+  public boolean equals(Object obj) {
+  if (this == obj) {
+    return true;
+  }
 
-  /**
-   *to help abstract the toString method
-   */
-  //TODO protected abstract String toStringHelp();
+  else if (! (obj instanceof StandardCard)) {
+    return false;
+  }
 
-  //TODO .equals for suits
+  else {
+    StandardCard that = (StandardCard) obj;
+    return that.suit.equals(this.suit) && that.rank.equals(this.rank);
+  }
+}
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.suit, this.rank);
+  }
+
 }

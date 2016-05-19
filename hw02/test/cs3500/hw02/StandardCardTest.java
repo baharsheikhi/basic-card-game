@@ -25,25 +25,64 @@ public class StandardCardTest {
   Card kingSpades = new StandardCard(Suit.Spades, Rank.King);
 
   Card fiveHearts = new StandardCard(Suit.Hearts, Rank.Five);
+  Card tenHearts = new StandardCard(Suit.Hearts, Rank.Ten);
 
   Card queenClubs = new StandardCard(Suit.Clubs, Rank.Queen);
+  Card kingClubs = new StandardCard(Suit.Clubs, Rank.King);
 
   Card tenDiamonds = new StandardCard(Suit.Diamonds, Rank.Ten);
 
-  Rank badRank = Rank.Ace;
-  Card aceSpadesBad = new StandardCard(Suit.Spades, badRank);
+  Rank aceCopy = Rank.Ace;
+  Card aceSpadesCopy = new StandardCard(Suit.Spades, aceCopy);
+
+  Suit heartCopy = Suit.Hearts;
+  Card queenHeartsCopy = new StandardCard(heartCopy, Rank.Queen);
 
 
-
+  //tests that the constructor properly links the Ranks
   @Test
-  public void testConstructor() {
-    assertEquals();
-    //TODO override .equals for cards
+  public void testConstructorRanks() {
+    assertEquals(fiveSpades, fiveSpades);
+    assertEquals(Rank.Ace, aceCopy);
+    assertEquals(aceSpades, aceSpadesCopy);
+    assertFalse(aceSpades.equals(nineSpades));
+  }
+
+  //tests that the constructor properly links the Suit
+  @Test
+  public void testConstructorSuit() {
+    assertEquals(Suit.Hearts, heartCopy);
+    assertNotEquals(queenHeartsCopy, queenClubs);
+    assertNotEquals(fiveHearts, tenHearts);
+    assertEquals(aceSpades, aceSpadesCopy);
   }
 
   @Test
-  public void testCompareTo() {
+  public void testCompareToEquality() {
+    assertEquals(aceSpades, aceSpadesCopy);
+    assertEquals(0, aceSpades.compareTo(aceSpadesCopy));
+    assertFalse(queenClubs.equals(kingClubs));
+    assertFalse(queenClubs.compareTo(kingClubs) == 0);
+    assertFalse(queenClubs.equals(queenSpades));
+    assertFalse(queenClubs.compareTo(queenSpades) == 0);
+    assertFalse(queenClubs.equals(fiveHearts));
+    assertFalse(queenClubs.compareTo(fiveHearts) == 0);
+  }
 
+  @Test
+  public void testComparetoInequality() {
+    assertNotEquals(queenClubs, queenSpades);
+    assertEquals(1, queenClubs.compareTo(queenSpades));
+    assertEquals(1, tenDiamonds.compareTo(tenHearts));
+    assertEquals(1, kingClubs.compareTo(kingSpades));
+    assertEquals(1, Suit.Clubs.compareSuits(Suit.Spades));
+    assertEquals(-1, queenSpades.compareTo(queenClubs));
+    assertNotEquals(fiveHearts, tenHearts);
+    assertEquals(1, tenHearts.compareTo(fiveHearts));
+    assertEquals(-1, fiveHearts.compareTo(tenHearts));
+    assertNotEquals(jackSpades, tenDiamonds);
+    assertEquals(1, tenDiamonds.compareTo(jackSpades));
+    assertEquals(-1, jackSpades.compareTo(tenDiamonds));
   }
 
 
@@ -63,6 +102,11 @@ public class StandardCardTest {
     assertEquals("J♠", jackSpades.toString());
     assertEquals("Q♠", queenSpades.toString());
     assertEquals("K♠", kingSpades.toString());
+    assertNotEquals(queenClubs.toString(), queenSpades.toString());
+    assertNotEquals(fiveSpades.toString(), fiveHearts.toString());
+    assertNotEquals(tenDiamonds, jackSpades);
+    assertTrue(queenClubs.toString().contains("♣"));
+    assertFalse(kingSpades.toString().contains("♣"));
   }
 
 }

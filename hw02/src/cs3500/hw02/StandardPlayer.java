@@ -28,10 +28,10 @@ public class StandardPlayer implements Player {
 
     @Override
     public String toString() {
-      String str = " ";
+      String str = "";
       Collections.sort(this.hand);
       for (Card c : this.hand) {
-        str+=c.toString()+",";
+        str+=c.toString()+", ";
       }
 
       return str;
@@ -42,7 +42,7 @@ public class StandardPlayer implements Player {
     /**
      * creates a standard player with an empty list of cards
      */
-    StandardPlayer() {
+    public StandardPlayer() {
         this.hand = new ArrayList<StandardCard>();
     }
 

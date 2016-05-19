@@ -24,4 +24,7 @@ public interface Player {
      */
     public int countCards();
 
+    @Override
+    public String toString();
+
 }

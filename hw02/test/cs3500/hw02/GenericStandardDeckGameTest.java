@@ -172,14 +172,13 @@ public class GenericStandardDeckGameTest {
   @Test
   public void startPlay() {
      this.game1.startPlay(4, this.game1.getDeck());
-
-
-
-
   }
 
   @Test
-  public void getGameState() {
+  public void getGameStateTest() {
+    GenericStandardDeckGame game2 = new GenericStandardDeckGame(2);
+
+    System.out.print(game2.getGameState());
 
   }
 

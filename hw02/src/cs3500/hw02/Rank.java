@@ -52,7 +52,7 @@ public enum Rank {
    * 0 otherwise
    */
   public int compareRank(Rank r) {
-    return this.rankToInt() - r.rankToInt();
+    return r.rankToInt() - this.rankToInt();
   }
 
 }
