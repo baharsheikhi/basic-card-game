@@ -1,10 +1,12 @@
 package cs3500.hw02;
 
+import com.sun.xml.internal.bind.api.impl.NameConverter;
+
 /**
  * A class to represent a standard card. It can be ranks 2-Ace with the four suits. Jokers are
  * excluded.
  */
-public class StandardCard implements Card {
+public class StandardCard implements Card, Comparable<StandardCard> {
 
   /**
    *
@@ -12,132 +14,64 @@ public class StandardCard implements Card {
    * @param rank The rank as a String 2-10, numbers in double quotes ie. "2", "3". The remaining
    *             ranks should be spelled out ie. "King", "Jack", "Queen", "Ace"
    */
-  StandardCard(String suit, String rank) {
+  StandardCard(Suit suit, Rank rank) {
     switch (suit) {
-      case "Heart":
+      case Hearts:
         this.suit = Suit.Hearts;
         break;
-      case "Diamonds":
+      case Diamonds:
         this.suit = Suit.Diamonds;
         break;
-      case "Clubs":
+      case Clubs:
         this.suit = Suit.Clubs;
         break;
-      case "Spades":
+      case Spades:
         this.suit = Suit.Spades;
         break;
       default: throw new IllegalArgumentException("Please enter a valid suit");
     }
 
     switch (rank) {
-      case "2":
+      case Two:
         this.rank = Rank.Two;
         break;
-      case "3":
+      case Three:
         this.rank = Rank.Three;
         break;
-      case "4":
+      case Four:
         this.rank = Rank.Four;
         break;
-      case "5":
+      case Five:
         this.rank = Rank.Five;
         break;
-      case "6":
+      case Six:
         this.rank = Rank.Six;
         break;
-      case "7":
+      case Seven:
         this.rank = Rank.Seven;
         break;
-      case "8":
+      case Eight:
         this.rank = Rank.Eight;
         break;
-      case "9":
+      case Nine:
         this.rank = Rank.Nine;
         break;
-      case "10":
+      case Ten:
         this.rank = Rank.Ten;
         break;
-      case "Jack":
+      case Jack:
         this.rank = Rank.Jack;
         break;
-      case "Queen":
+      case Queen:
         this.rank = Rank.Queen;
         break;
-      case "King":
+      case King:
         this.rank = Rank.King;
         break;
-      case "Ace":
+      case Ace:
         this.rank = Rank.Ace;
         break;
-      default: throw new IllegalArgumentException("Please enter a valid rank");
-    }
-  }
-
-  /**
-   *
-   * @param suit The suit as a String (plural form ie. "Hearts", "Spades", "Diamonds", "Hearts"
-   * @param rank The rank represented as an integer: from 2-14. 2-10 represent their respective
-   *             ranks. 11 represents Jack, 12 represents Queen, 13 represents King, 14 represents
-   *             Ace.
-   */
-  StandardCard(String suit, int rank) {
-    switch (suit) {
-      case "Hearts":
-        this.suit = Suit.Hearts;
-        break;
-      case "Diamonds":
-        this.suit = Suit.Diamonds;
-        break;
-      case "Clubs":
-        this.suit = Suit.Clubs;
-        break;
-      case "Spades":
-        this.suit = Suit.Spades;
-        break;
-      default: throw new IllegalArgumentException("Please enter a valid suit");
-    }
-
-    switch (rank) {
-      case 2:
-        this.rank = Rank.Two;
-        break;
-      case 3:
-        this.rank = Rank.Three;
-        break;
-      case 4:
-        this.rank = Rank.Four;
-        break;
-      case 5:
-        this.rank = Rank.Five;
-        break;
-      case 6:
-        this.rank = Rank.Six;
-        break;
-      case 7:
-        this.rank = Rank.Seven;
-        break;
-      case 8:
-        this.rank = Rank.Eight;
-        break;
-      case 9:
-        this.rank = Rank.Nine;
-        break;
-      case 10:
-        this.rank = Rank.Ten;
-        break;
-      case 11:
-        this.rank = Rank.Jack;
-        break;
-      case 12:
-        this.rank = Rank.Queen;
-        break;
-      case 13:
-        this.rank = Rank.King;
-        break;
-      case 14:
-        this.rank = Rank.Ace;
-        break;
-      default: throw new IllegalArgumentException("Please enter a integer to represent ranks");
+      default: throw new IllegalArgumentException("Please enter valid rank.");
     }
   }
 
@@ -155,6 +89,20 @@ public class StandardCard implements Card {
 
     return ret;
   }
+
+  @Override
+  public int compareTo(StandardCard c2) {
+    if (this.suit.compareTo(c2.suit) > 1) {
+      return 1;
+    }
+    else if (this.suit.compareTo(c2.suit) < 1) {
+      return -1;
+    }
+    else {
+      return this.rank.compareTo(c2.rank);
+    }
+  }
+
 
 //  @Override
 //  public String toString() {

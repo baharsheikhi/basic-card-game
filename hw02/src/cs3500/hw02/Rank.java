@@ -26,6 +26,34 @@ public enum Rank {
     return this.value;
   }
 
+  /**
+   *
+   * @return the integer value of this rank
+   */
+  private int rankToInt() {
+    switch (this) {
+      case Jack:
+        return 11;
+      case Queen:
+        return 12;
+      case King:
+        return 13;
+      case Ace:
+        return 14;
+      default: return Integer.parseInt(this.toString());
+    }
+  }
+
+  /**
+   *
+   * @param r the rank to compare this one to
+   * @return 1 if this rank is greater than r
+   * -1 if that is greater than this
+   * 0 otherwise
+   */
+  public int compareRank(Rank r) {
+    return this.rankToInt() - r.rankToInt();
+  }
 
 }
 

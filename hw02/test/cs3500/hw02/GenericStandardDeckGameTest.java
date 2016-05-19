@@ -12,6 +12,7 @@ import java.util.*;
 public class GenericStandardDeckGameTest {
 
   GenericCardGameModel<Card> game1 = new GenericStandardDeckGame();
+  List<StandardCard> smallList = new ArrayList<StandardCard>();
 
   //tests that the deck has 52 cards
   @Test
@@ -170,8 +171,7 @@ public class GenericStandardDeckGameTest {
 
   @Test
   public void startPlay() {
-
-      this.game1.startPlay(4, this.game1.getDeck());
+     this.game1.startPlay(4, this.game1.getDeck());
 
 
 

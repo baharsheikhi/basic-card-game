@@ -1,7 +1,6 @@
 package cs3500.hw02; /**
  * Created by baharsheikhi on 5/18/16.
  */
-import cs3500.hw02.Player;
 
 import java.util.*;
 
@@ -12,7 +11,7 @@ public class StandardPlayer implements Player {
 
     @Override
     public void addCard(Card c) {
-        this.hand.add(c);
+        this.hand.add((StandardCard) c);
 
     }
 
@@ -27,13 +26,24 @@ public class StandardPlayer implements Player {
         return this.hand.size();
     }
 
-    private final List<Card> hand;
+    @Override
+    public String toString() {
+      String str = " ";
+      Collections.sort(this.hand);
+      for (Card c : this.hand) {
+        str+=c.toString()+",";
+      }
+
+      return str;
+    }
+
+    private final List<StandardCard> hand;
 
     /**
      * creates a standard player with an empty list of cards
      */
     StandardPlayer() {
-        this.hand = new ArrayList<Card>();
+        this.hand = new ArrayList<StandardCard>();
     }
 
 

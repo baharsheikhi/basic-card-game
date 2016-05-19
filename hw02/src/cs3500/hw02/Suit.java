@@ -4,7 +4,7 @@ package cs3500.hw02;
  * An enumeration to represent suits of a card
  */
 public enum Suit {
-  Hearts, Spades, Diamonds, Clubs;
+  Clubs, Diamonds, Hearts, Spades;
 
   @Override
   public String toString() {
@@ -26,5 +26,14 @@ public enum Suit {
     }
 
     return ret;
+  }
+
+  /**
+   *
+   * @param s the suit to compare this one with
+   * @return 1 if this suit is greater than that suit, -1 if the other is greater, 0 otherwise.
+   */
+  public int compareSuits(Suit s) {
+    return this.ordinal() - s.ordinal();
   }
 }
