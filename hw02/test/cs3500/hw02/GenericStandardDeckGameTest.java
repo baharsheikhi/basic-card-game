@@ -160,12 +160,105 @@ public class GenericStandardDeckGameTest {
   }
 
   @Test
-  public void getGameStateTest() {
+  public void getGameStateTestCorrectDeck() {
     GenericStandardDeckGame game2 = new GenericStandardDeckGame(2);
 
-    System.out.print(game2.getGameState());
+    String gameState = game2.getGameState();
 
+      int clubsCount = 0;
+      int diamondsCount = 0;
+      int heartsCount = 0;
+      int spadesCount = 0;
+
+      int twoCount = 0;
+      int threeCount = 0;
+      int fourCount = 0;
+      int fiveCount = 0;
+      int sixCount = 0;
+      int sevenCount = 0;
+      int eightCount = 0;
+      int nineCount = 0;
+      int tenCount = 0;
+      int jackCount = 0;
+      int queenCount = 0;
+      int kingCount = 0;
+      int aceCount = 0;
+
+      for (int i = 0; i < gameState.length(); i++) {
+       switch (gameState.charAt(i)) {
+           case '♣':
+               clubsCount++;
+               break;
+           case '♦':
+               diamondsCount++;
+               break;
+           case '♥':
+               heartsCount++;
+               break;
+           case '♠':
+               spadesCount++;
+               break;
+           case '2':
+               twoCount++;
+               break;
+           case '3':
+               threeCount++;
+               break;
+           case '4':
+               fourCount++;
+               break;
+           case '5':
+               fiveCount++;
+               break;
+           case '6':
+               sixCount++;
+               break;
+           case '7':
+               sevenCount++;
+               break;
+           case '8':
+               eightCount++;
+               break;
+           case '9':
+               nineCount++;
+               break;
+           case 'J':
+               jackCount++;
+               break;
+           case 'Q':
+               queenCount++;
+               break;
+           case 'K':
+               kingCount++;
+               break;
+           case 'A':
+               aceCount++;
+               break;
+           default:
+       }
+      }
+      assertEquals(13, clubsCount);
+      assertEquals(13, diamondsCount);
+      assertEquals(13, heartsCount);
+      assertEquals(13, spadesCount);
+      assertEquals(4, twoCount);
+      assertEquals(4, threeCount);
+      assertEquals(4, fourCount);
+      assertEquals(4, fiveCount);
+      assertEquals(4, sixCount);
+      assertEquals(4, sevenCount);
+      assertEquals(4, eightCount);
+      assertEquals(4, nineCount);
+      assertEquals(4, tenCount);
+      assertEquals(4, jackCount);
+      assertEquals(4, queenCount);
+      assertEquals(4, kingCount);
+      assertEquals(4, aceCount);
   }
+
+    @Test
+    public void testGameStatePlayerCards() {
+    }
 
 }
 

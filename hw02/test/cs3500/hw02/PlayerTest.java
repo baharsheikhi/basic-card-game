@@ -8,9 +8,9 @@ import static org.junit.Assert.*;
 /**
  * Created by bahar on 5/18/16.
  */
-public class StandardPlayerTest {
+public class PlayerTest {
   List<Card> player1Hand= new ArrayList<Card>();
-  StandardPlayer player1 = new StandardPlayer();
+  Player player1 = new Player();
   Card aceSpades = new StandardCard(Suit.Spades, Rank.Ace);
   Card aceClubs = new StandardCard(Suit.Clubs, Rank.Ace);
   Card aceSpadesCopy = new StandardCard(Suit.Spades, Rank.Ace);

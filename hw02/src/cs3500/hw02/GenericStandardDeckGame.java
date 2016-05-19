@@ -67,7 +67,7 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
      */
     protected void initPlayers(int numPlayers) {
       for (int i = 0; i < numPlayers; i++) {
-          players.add(new StandardPlayer());
+          players.add(new Player());
       }
   }
 

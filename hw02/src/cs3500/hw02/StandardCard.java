@@ -8,7 +8,7 @@ import java.util.Objects;
  * A class to represent a standard card. It can be ranks 2-Ace with the four suits. Jokers are
  * excluded.
  */
-public class StandardCard implements Card {
+public class StandardCard implements Card, Comparable<StandardCard>  {
 
   /**
    *
@@ -93,16 +93,15 @@ public class StandardCard implements Card {
   }
 
   @Override
-  public int compareTo(Card card) {
-    StandardCard c2 = (StandardCard) card;
-    if (this.suit.compareSuits(c2.suit) > 0) {
+  public int compareTo(StandardCard card) {
+    if (this.suit.compareSuits(card.suit) > 0) {
       return 1;
     }
-    else if (this.suit.compareSuits(c2.suit) < 0) {
+    else if (this.suit.compareSuits(card.suit) < 0) {
       return -1;
     }
     else {
-      return this.rank.compareRank(c2.rank);
+      return this.rank.compareRank(card.rank);
     }
   }
 

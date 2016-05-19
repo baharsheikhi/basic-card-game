@@ -6,9 +6,7 @@ import java.util.*;
  * An interface to represent suits, of which there are 4 kinds: Diamonds, Clubs, Spades, and
  * Hearts
  */
-public interface Card extends Comparable<Card>{
+public interface Card {
 
-  @Override
-  public int compareTo(Card c);
 }
 
