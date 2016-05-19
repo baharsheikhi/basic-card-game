@@ -22,10 +22,10 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
     List<Card> allCards = new ArrayList<Card>();
 
     for (int i = StandardCard.MIN_RANK_VALUE; i <= StandardCard.MAX_RANK_VALUE; i++) {
-      allCards.add(new StandardCard(Suit.Hearts, Rank.values()[i]));
-      allCards.add(new StandardCard(Suit.Diamonds, Rank.values()[i]));
-      allCards.add(new StandardCard(Suit.Spades, Rank.values()[i]));
-      allCards.add(new StandardCard(Suit.Clubs, Rank.values()[i]));
+      allCards.add(new StandardCard(Suit.Hearts, Rank.intToRank(i)));
+      allCards.add(new StandardCard(Suit.Diamonds, Rank.intToRank(i)));
+      allCards.add(new StandardCard(Suit.Spades, Rank.intToRank(i)));
+      allCards.add(new StandardCard(Suit.Clubs, Rank.intToRank(i)));
     }
 
     Collections.shuffle(allCards);
@@ -36,10 +36,11 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
   public void startPlay(int numPlayers, List<Card> deck) {
       this.initPlayers(numPlayers);
 
-      for (int i = 0; i < deck.size() - numPlayers; i++) {
+      for (int i = 0; i < deck.size(); i+=numPlayers) {
+        int count = 0;
           for (Player p: this.players) {
-              p.addCard(deck.get(i));
-              i++;
+              p.addCard(deck.get(i + count));
+            count++;
           }
       }
 
@@ -47,10 +48,10 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
 
   @Override
   public String getGameState() {
-    String ret = "Number of players: "+this.players.size()+"/n";
+    String ret = "Number of players: "+this.players.size()+"\n";
 
     for (int i = 0; i < this.players.size(); i++) {
-      ret+="Player "+(i+1)+": "+players.get(i).toString()+"/n";
+      ret+="Player "+(i+1)+": "+players.get(i).toString()+"\n";
     }
 
     return ret;
@@ -82,5 +83,3 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
     }
 
 }
-
-//TODO REMOVE THE STRING CONSTRUCTOR FOR CARDS
