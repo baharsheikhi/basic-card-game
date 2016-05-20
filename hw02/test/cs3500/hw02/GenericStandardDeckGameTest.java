@@ -11,18 +11,53 @@ import java.util.*;
  */
 public class GenericStandardDeckGameTest {
 
-  GenericCardGameModel<StandardCard> game1 = new GenericStandardDeckGame();
-  List<StandardCard> smallList = new ArrayList<StandardCard>();
+  GenericCardGameModel<StandardCard> gameBasic = new GenericStandardDeckGame();
+  List<StandardCard> deck1 = gameBasic.getDeck();
+  GenericStandardDeckGame gameCustomNumPlayers = new GenericStandardDeckGame(2);
+  List<StandardCard> badDeck = new ArrayList<StandardCard>();
+  GenericStandardDeckGame gameCustomDeck =
+          new GenericStandardDeckGame(gameCustomNumPlayers.getDeck());
+  GenericStandardDeckGame gameOnePlayer =
+          new GenericStandardDeckGame(gameCustomNumPlayers.getDeck(), 1);
 
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructorCustomDeck() {
+    badDeck.add(new StandardCard(Suit.Diamonds, Rank.Ace));
+    GenericStandardDeckGame gameBadDeck =
+            new GenericStandardDeckGame(badDeck);
+    badDeck.addAll(gameCustomNumPlayers.getDeck());
+    GenericStandardDeckGame gameBadDeck1 =
+            new GenericStandardDeckGame(badDeck);
+
+
+  }
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructorCustomPlayers() {
+    GenericStandardDeckGame gameBadNumberPlayers =
+            new GenericStandardDeckGame(0);
+    GenericStandardDeckGame gameBadNumberPlayers1 =
+            new GenericStandardDeckGame(-1);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructorCustomAll() {
+    badDeck.add(new StandardCard(Suit.Diamonds, Rank.Ace));
+    GenericStandardDeckGame gameBadNumberPlayers =
+            new GenericStandardDeckGame(gameCustomNumPlayers.getDeck(), 0);
+    GenericStandardDeckGame gameBadDeck =
+            new GenericStandardDeckGame(badDeck, 4);
+    GenericStandardDeckGame gameBadBoth =
+            new GenericStandardDeckGame(badDeck, 0);
+  }
   //tests that the deck has 52 cards
   @Test
   public void getDeckContents() {
-    assertEquals(52, game1.getDeck().size());
-    assertFalse(game1.getDeck().equals(null));
+    assertEquals(52, gameBasic.getDeck().size());
+    assertFalse(gameBasic.getDeck().equals(null));
 
-    for (int i = 0; i < game1.getDeck().size(); i++) {
-      assertFalse(game1.getDeck().get(i).equals(null));
-      System.out.println(game1.getDeck().get(i).toString());
+    for (int i = 0; i < gameBasic.getDeck().size(); i++) {
+      assertFalse(gameBasic.getDeck().get(i).equals(null));
     }
   }
 
@@ -44,7 +79,7 @@ public class GenericStandardDeckGameTest {
     int rankAce = 0;
 
     for(int i = 0; i < StandardCard.DECK_SIZE; i++) {
-      String str = game1.getDeck().get(i).toString();
+      String str = gameBasic.getDeck().get(i).toString();
       if (str.contains("2")) {
         rankTwo++;
       } else if (str.contains("3")) {
@@ -89,7 +124,7 @@ public class GenericStandardDeckGameTest {
       assertEquals(4, rankAce);
   }
 
-  //Each suite should appear 13 times
+  //Each suit should appear 13 times
   @Test
   public void testSuitCount() {
     int heartsCount = 0;
@@ -98,7 +133,7 @@ public class GenericStandardDeckGameTest {
     int diamondsCount = 0;
 
     for(int i = 0; i < StandardCard.DECK_SIZE; i++) {
-      String str = game1.getDeck().get(i).toString();
+      String str = gameBasic.getDeck().get(i).toString();
       if (str.contains("♥")) {
         heartsCount++;
       }
@@ -125,12 +160,12 @@ public class GenericStandardDeckGameTest {
   @Test
   public void noDuplicatesGetDeck() {
     List<StandardCard> copiedDeck = new ArrayList<StandardCard>();
-    copiedDeck.addAll(this.game1.getDeck());
+    copiedDeck.addAll(this.gameBasic.getDeck());
 
     List<StandardCard> transferredDeck = new ArrayList<StandardCard>();
-    transferredDeck.addAll(this.game1.getDeck());
+    transferredDeck.addAll(this.gameBasic.getDeck());
 
-    for(int i = 0; i < this.game1.getDeck().size(); i++) {
+    for(int i = 0; i < this.gameBasic.getDeck().size(); i++) {
       StandardCard discarded = copiedDeck.remove(0);
 
       for (StandardCard s : copiedDeck) {
@@ -142,11 +177,11 @@ public class GenericStandardDeckGameTest {
     @Test
     public void differentDeckEachTime() {
         List<StandardCard> copiedDeck = new ArrayList<StandardCard>();
-        copiedDeck.addAll(this.game1.getDeck());
-        assertTrue(this.game1.getDeck().containsAll(copiedDeck));
+        copiedDeck.addAll(this.gameBasic.getDeck());
+        assertTrue(this.gameBasic.getDeck().containsAll(copiedDeck));
         boolean isDifferent = false;
         for (int i = 0; i < copiedDeck.size(); i++) {
-          if (! copiedDeck.get(i).equals(this.game1.getDeck().get(i))) {
+          if (! copiedDeck.get(i).equals(this.gameBasic.getDeck().get(i))) {
             isDifferent = true;
             break;
           }
@@ -156,14 +191,13 @@ public class GenericStandardDeckGameTest {
 
   @Test
   public void startPlay() {
-//     this.game1.startPlay(4, this.game1.getDeck());
+//     this.gameBasic.startPlay(4, this.gameBasic.getDeck());
   }
 
+  //tests that the deck distributed is still valid after being given to the players
   @Test
-  public void getGameStateTestCorrectDeck() {
-    GenericStandardDeckGame game2 = new GenericStandardDeckGame(2);
-
-    String gameState = game2.getGameState();
+  public void getGameStateTestValidDeck() {
+    String gameState = gameCustomNumPlayers.getGameState();
 
       int clubsCount = 0;
       int diamondsCount = 0;
@@ -222,6 +256,9 @@ public class GenericStandardDeckGameTest {
            case '9':
                nineCount++;
                break;
+            case '1':
+                tenCount++;
+                break;
            case 'J':
                jackCount++;
                break;
@@ -241,7 +278,8 @@ public class GenericStandardDeckGameTest {
       assertEquals(13, diamondsCount);
       assertEquals(13, heartsCount);
       assertEquals(13, spadesCount);
-      assertEquals(4, twoCount);
+      //Players: 2, and Player 2 both count as the two character
+      assertEquals(6, twoCount);
       assertEquals(4, threeCount);
       assertEquals(4, fourCount);
       assertEquals(4, fiveCount);
@@ -249,16 +287,104 @@ public class GenericStandardDeckGameTest {
       assertEquals(4, sevenCount);
       assertEquals(4, eightCount);
       assertEquals(4, nineCount);
-      assertEquals(4, tenCount);
+      //player 1 as well as everytime 10
+      assertEquals(5, tenCount);
       assertEquals(4, jackCount);
       assertEquals(4, queenCount);
       assertEquals(4, kingCount);
       assertEquals(4, aceCount);
   }
 
-    @Test
-    public void testGameStatePlayerCards() {
+   @Test(expected = IllegalArgumentException.class)
+   public void testStartPlayAlreadyInitializedException(){
+     gameCustomNumPlayers.startPlay(2, gameCustomNumPlayers.getDeck());
+   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testStartPlayInvalidDeck() {
+    badDeck.add(new StandardCard(Suit.Diamonds, Rank.Two));
+    gameCustomNumPlayers.startPlay(5, badDeck);
+    badDeck.addAll(gameCustomNumPlayers.getDeck());
+  }
+
+  @Test
+    public void testStartPlayNoShuffle() {
+      String gameState = gameCustomDeck.getGameState();
+      String fromGameState = "";
+      String fromDeck = "";
+    List<StandardCard> deck = gameCustomNumPlayers.getDeck();
+    Collections.sort(deck);
+    for (StandardCard c: deck) {
+      fromDeck += c.toString();
     }
+    String player1String = "";
+    String player2String = "";
+    String player3String = "";
+    String player4String = "";
+
+      String[] playersHands = gameState.split("Player");
+
+      String[] player1HandBefore = playersHands[1].split(":");
+      String player1HandString = player1HandBefore[1];
+      String [] player1Hand = player1HandString.split(",");
+      for (String s : player1Hand) {
+        player1String+=s;
+      }
+
+      String[] player2HandBefore = playersHands[2].split(":");
+      String player2HandString = player2HandBefore[1];
+      String [] player2Hand = player2HandString.split(",");
+      for (String s : player2Hand) {
+        player2String+=s;
+      }
+
+    String[] player3HandBefore = playersHands[3].split(":");
+    String player3HandString = player3HandBefore[1];
+    String [] player3Hand = player3HandString.split(",");
+    for (String s : player3Hand) {
+      player3String+=s;
+    }
+
+    String[] player4HandBefore = playersHands[4].split(":");
+    String player4HandString = player4HandBefore[1];
+    String [] player4Hand = player4HandString.split(",");
+    for (String s : player4Hand) {
+      player4String+=s;
+    }
+    fromGameState = player4String + player2String + player1String + player3String;
+    fromGameState = fromGameState.replaceAll(" ", "");
+
+    assertEquals(fromDeck, fromGameState);
+    assertEquals(13, player1Hand.length);
+    assertEquals(13, player2Hand.length);
+    assertEquals(13, player3Hand.length);
+    assertEquals(13, player4Hand.length);
+    }
+
+  @Test
+  public void testOnePlayer() {
+    String gameState = gameOnePlayer.getGameState();
+    String player1String = "";
+    String fromDeck = "";
+    List<StandardCard> deck = gameCustomNumPlayers.getDeck();
+    Collections.sort(deck);
+    for (StandardCard c: deck) {
+      fromDeck += c.toString();
+    }
+
+    String[] playersHands = gameState.split("Player");
+
+    String[] player1HandBefore = playersHands[1].split(":");
+    String player1HandString = player1HandBefore[1];
+    String [] player1Hand = player1HandString.split(",");
+    for (int i = 0; i < 52; i++) {
+      player1String+= player1Hand[i];
+    }
+
+    player1String = player1String.replaceAll(" ", "");
+    assertEquals(fromDeck, player1String);
+
+  }
 
 }
 

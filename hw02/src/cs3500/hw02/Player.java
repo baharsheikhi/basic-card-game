@@ -8,7 +8,6 @@ import java.util.*;
  * to represent a player that plays a standard card game
  */
 public class Player{
-    //TODO IS IT BAD THAT MY PLAYER CAN HAVE A HAND OF ANY CARDS??????
 
     public void addCard(StandardCard c) {
         this.hand.add(c);
