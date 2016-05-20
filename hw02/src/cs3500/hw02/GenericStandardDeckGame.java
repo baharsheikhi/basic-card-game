@@ -15,11 +15,11 @@ import java.util.*;
  *
  *  NOTE: In this standard deck game ace is the highest value
  */
-public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
+public class GenericStandardDeckGame implements GenericCardGameModel<StandardCard> {
 
   @Override
-  public List<Card> getDeck() {
-    List<Card> allCards = new ArrayList<Card>();
+  public List<StandardCard> getDeck() {
+    List<StandardCard> allCards = new ArrayList<StandardCard>();
 
     for (int i = StandardCard.MIN_RANK_VALUE; i <= StandardCard.MAX_RANK_VALUE; i++) {
       allCards.add(new StandardCard(Suit.Hearts, Rank.intToRank(i)));
@@ -33,7 +33,8 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
   }
 
   @Override
-  public void startPlay(int numPlayers, List<Card> deck) {
+  public void startPlay(int numPlayers, List<StandardCard> deck) {
+      //TODO throw an exception if there is an invalid deck
       this.initPlayers(numPlayers);
 
       for (int i = 0; i < deck.size(); i+=numPlayers) {
@@ -58,7 +59,7 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
   }
 
 
-  private final List<Card> deck;
+  private final List<StandardCard> deck;
   private final List<Player> players;
 
     /**
@@ -78,7 +79,7 @@ public class GenericStandardDeckGame implements GenericCardGameModel<Card> {
     }
 
     public GenericStandardDeckGame() {
-        this.deck = new ArrayList<Card>();
+        this.deck = new ArrayList<StandardCard>();
         this.players = new ArrayList<Player>();
     }
 

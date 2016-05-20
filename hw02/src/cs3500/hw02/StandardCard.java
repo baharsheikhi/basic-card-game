@@ -8,7 +8,7 @@ import java.util.Objects;
  * A class to represent a standard card. It can be ranks 2-Ace with the four suits. Jokers are
  * excluded.
  */
-public class StandardCard implements Card, Comparable<StandardCard>  {
+public class StandardCard implements Comparable<StandardCard>  {
 
   /**
    *

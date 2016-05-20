@@ -8,14 +8,14 @@ import java.util.*;
  * to represent a player that plays a standard card game
  */
 public class Player{
-    //TODO IS IT BAD THAT MY PLAYER CAN HAVE A HAND OF ANY CARDS
+    //TODO IS IT BAD THAT MY PLAYER CAN HAVE A HAND OF ANY CARDS??????
 
-    public void addCard(Card c) {
+    public void addCard(StandardCard c) {
         this.hand.add(c);
 
     }
 
-    public Card removeCard(Card c) {
+    public StandardCard removeCard(StandardCard c) {
         int pos = this.hand.indexOf(c);
         return this.hand.remove(pos);
     }
@@ -30,20 +30,20 @@ public class Player{
     public String toString() {
       String str = "";
       Collections.sort(this.hand);
-      for (Card c : this.hand) {
+      for (StandardCard c : this.hand) {
         str+=c.toString()+", ";
       }
 
       return str;
     }
 
-    private final List<Card> hand;
+    private final List<StandardCard> hand;
 
     /**
      * creates a standard player with an empty list of cards
      */
     public Player() {
-        this.hand = new ArrayList<Card>();
+        this.hand = new ArrayList<StandardCard>();
     }
 
 

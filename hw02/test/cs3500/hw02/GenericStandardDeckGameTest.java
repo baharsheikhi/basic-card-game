@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class GenericStandardDeckGameTest {
 
-  GenericCardGameModel<Card> game1 = new GenericStandardDeckGame();
+  GenericCardGameModel<StandardCard> game1 = new GenericStandardDeckGame();
   List<StandardCard> smallList = new ArrayList<StandardCard>();
 
   //tests that the deck has 52 cards
@@ -124,16 +124,16 @@ public class GenericStandardDeckGameTest {
 
   @Test
   public void noDuplicatesGetDeck() {
-    List<Card> copiedDeck = new ArrayList<Card>();
+    List<StandardCard> copiedDeck = new ArrayList<StandardCard>();
     copiedDeck.addAll(this.game1.getDeck());
 
-    List<Card> transferredDeck = new ArrayList<Card>();
+    List<StandardCard> transferredDeck = new ArrayList<StandardCard>();
     transferredDeck.addAll(this.game1.getDeck());
 
     for(int i = 0; i < this.game1.getDeck().size(); i++) {
-      Card discarded = copiedDeck.remove(0);
+      StandardCard discarded = copiedDeck.remove(0);
 
-      for (Card s : copiedDeck) {
+      for (StandardCard s : copiedDeck) {
         assertFalse(discarded.equals(s));
       }
     }
@@ -141,7 +141,7 @@ public class GenericStandardDeckGameTest {
 
     @Test
     public void differentDeckEachTime() {
-        List<Card> copiedDeck = new ArrayList<Card>();
+        List<StandardCard> copiedDeck = new ArrayList<StandardCard>();
         copiedDeck.addAll(this.game1.getDeck());
         assertTrue(this.game1.getDeck().containsAll(copiedDeck));
         boolean isDifferent = false;

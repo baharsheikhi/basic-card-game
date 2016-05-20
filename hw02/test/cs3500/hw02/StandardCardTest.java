@@ -10,33 +10,33 @@ import static org.junit.Assert.*;
  */
 public class StandardCardTest {
 
-  Card aceSpades = new StandardCard(Suit.Spades, Rank.Ace);
-  Card twoSpades = new StandardCard(Suit.Spades, Rank.Two);
-  Card threeSpades = new StandardCard(Suit.Spades, Rank.Three);
-  Card fourSpades = new StandardCard(Suit.Spades, Rank.Four);
-  Card fiveSpades = new StandardCard(Suit.Spades, Rank.Five);
-  Card sixSpades = new StandardCard(Suit.Spades, Rank.Six);
-  Card sevenSpades = new StandardCard(Suit.Spades, Rank.Seven);
-  Card eightSpades = new StandardCard(Suit.Spades, Rank.Eight);
-  Card nineSpades = new StandardCard(Suit.Spades, Rank.Nine);
-  Card tenSpades = new StandardCard(Suit.Spades, Rank.Ten);
-  Card jackSpades = new StandardCard(Suit.Spades, Rank.Jack);
-  Card queenSpades = new StandardCard(Suit.Spades, Rank.Queen);
-  Card kingSpades = new StandardCard(Suit.Spades, Rank.King);
+  StandardCard aceSpades = new StandardCard(Suit.Spades, Rank.Ace);
+  StandardCard twoSpades = new StandardCard(Suit.Spades, Rank.Two);
+  StandardCard threeSpades = new StandardCard(Suit.Spades, Rank.Three);
+  StandardCard fourSpades = new StandardCard(Suit.Spades, Rank.Four);
+  StandardCard fiveSpades = new StandardCard(Suit.Spades, Rank.Five);
+  StandardCard sixSpades = new StandardCard(Suit.Spades, Rank.Six);
+  StandardCard sevenSpades = new StandardCard(Suit.Spades, Rank.Seven);
+  StandardCard eightSpades = new StandardCard(Suit.Spades, Rank.Eight);
+  StandardCard nineSpades = new StandardCard(Suit.Spades, Rank.Nine);
+  StandardCard tenSpades = new StandardCard(Suit.Spades, Rank.Ten);
+  StandardCard jackSpades = new StandardCard(Suit.Spades, Rank.Jack);
+  StandardCard queenSpades = new StandardCard(Suit.Spades, Rank.Queen);
+  StandardCard kingSpades = new StandardCard(Suit.Spades, Rank.King);
 
-  Card fiveHearts = new StandardCard(Suit.Hearts, Rank.Five);
-  Card tenHearts = new StandardCard(Suit.Hearts, Rank.Ten);
+  StandardCard fiveHearts = new StandardCard(Suit.Hearts, Rank.Five);
+  StandardCard tenHearts = new StandardCard(Suit.Hearts, Rank.Ten);
 
-  Card queenClubs = new StandardCard(Suit.Clubs, Rank.Queen);
-  Card kingClubs = new StandardCard(Suit.Clubs, Rank.King);
+  StandardCard queenClubs = new StandardCard(Suit.Clubs, Rank.Queen);
+  StandardCard kingClubs = new StandardCard(Suit.Clubs, Rank.King);
 
-  Card tenDiamonds = new StandardCard(Suit.Diamonds, Rank.Ten);
+  StandardCard tenDiamonds = new StandardCard(Suit.Diamonds, Rank.Ten);
 
   Rank aceCopy = Rank.Ace;
-  Card aceSpadesCopy = new StandardCard(Suit.Spades, aceCopy);
+  StandardCard aceSpadesCopy = new StandardCard(Suit.Spades, aceCopy);
 
   Suit heartCopy = Suit.Hearts;
-  Card queenHeartsCopy = new StandardCard(heartCopy, Rank.Queen);
+  StandardCard queenHeartsCopy = new StandardCard(heartCopy, Rank.Queen);
 
 
   //tests that the constructor properly links the Ranks

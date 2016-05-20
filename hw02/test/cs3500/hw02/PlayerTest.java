@@ -9,16 +9,16 @@ import static org.junit.Assert.*;
  * Created by bahar on 5/18/16.
  */
 public class PlayerTest {
-  List<Card> player1Hand= new ArrayList<Card>();
+  List<StandardCard> player1Hand= new ArrayList<StandardCard>();
   Player player1 = new Player();
-  Card aceSpades = new StandardCard(Suit.Spades, Rank.Ace);
-  Card aceClubs = new StandardCard(Suit.Clubs, Rank.Ace);
-  Card aceSpadesCopy = new StandardCard(Suit.Spades, Rank.Ace);
-  Card fiveClubs = new StandardCard(Suit.Clubs, Rank.Five);
-  Card kingHearts = new StandardCard(Suit.Hearts, Rank.King);
-  Card tenHearts = new StandardCard(Suit.Hearts, Rank.Ten);
-  Card sixSpades = new StandardCard(Suit.Spades, Rank.Six);
-  Card twoDiamonds = new StandardCard(Suit.Diamonds, Rank.Two);
+  StandardCard aceSpades = new StandardCard(Suit.Spades, Rank.Ace);
+  StandardCard aceClubs = new StandardCard(Suit.Clubs, Rank.Ace);
+    StandardCard aceSpadesCopy = new StandardCard(Suit.Spades, Rank.Ace);
+    StandardCard fiveClubs = new StandardCard(Suit.Clubs, Rank.Five);
+    StandardCard kingHearts = new StandardCard(Suit.Hearts, Rank.King);
+    StandardCard tenHearts = new StandardCard(Suit.Hearts, Rank.Ten);
+    StandardCard sixSpades = new StandardCard(Suit.Spades, Rank.Six);
+    StandardCard twoDiamonds = new StandardCard(Suit.Diamonds, Rank.Two);
 
   @Test
   public void testConstructor() {
