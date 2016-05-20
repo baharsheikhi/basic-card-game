@@ -22,10 +22,10 @@ public class GenericStandardDeckGame implements GenericCardGameModel<StandardCar
     List<StandardCard> allCards = new ArrayList<StandardCard>();
 
     for (int i = StandardCard.MIN_RANK_VALUE; i <= StandardCard.MAX_RANK_VALUE; i++) {
-      allCards.add(new StandardCard(Suit.Hearts, Rank.intToRank(i)));
-      allCards.add(new StandardCard(Suit.Diamonds, Rank.intToRank(i)));
-      allCards.add(new StandardCard(Suit.Spades, Rank.intToRank(i)));
       allCards.add(new StandardCard(Suit.Clubs, Rank.intToRank(i)));
+      allCards.add(new StandardCard(Suit.Diamonds, Rank.intToRank(i)));
+      allCards.add(new StandardCard(Suit.Hearts, Rank.intToRank(i)));
+      allCards.add(new StandardCard(Suit.Spades, Rank.intToRank(i)));
     }
 
     return allCards;

@@ -174,20 +174,14 @@ public class GenericStandardDeckGameTest {
     }
   }
 
-    @Test
-    public void differentDeckEachTime() {
-        List<StandardCard> copiedDeck = new ArrayList<StandardCard>();
-        copiedDeck.addAll(this.gameBasic.getDeck());
-        assertTrue(this.gameBasic.getDeck().containsAll(copiedDeck));
-        boolean isDifferent = false;
-        for (int i = 0; i < copiedDeck.size(); i++) {
-          if (! copiedDeck.get(i).equals(this.gameBasic.getDeck().get(i))) {
-            isDifferent = true;
-            break;
-          }
-        }
-        assertTrue(isDifferent);
-    }
+  @Test
+  public void differentDeckEachTime() {
+    GenericStandardDeckGame gameBasicCompare = new GenericStandardDeckGame();
+    String basicGameState = gameBasic.getGameState();
+    String basicGameStateCompare = gameBasicCompare.getGameState();
+
+    assertFalse(basicGameState.equals(basicGameStateCompare));
+  }
 
   @Test
   public void startPlay() {
@@ -307,14 +301,14 @@ public class GenericStandardDeckGameTest {
     badDeck.addAll(gameCustomNumPlayers.getDeck());
   }
 
-  @Test
+    @Test
     public void testStartPlayNoShuffle() {
-      String gameState = gameCustomDeck.getGameState();
-      String fromGameState = "";
-      String fromDeck = "";
+    String gameState = gameCustomDeck.getGameState();
+    String fromGameState = "";
+    String fromDeck = "";
     List<StandardCard> deck = gameCustomNumPlayers.getDeck();
     Collections.sort(deck);
-    for (StandardCard c: deck) {
+    for (StandardCard c : deck) {
       fromDeck += c.toString();
     }
     String player1String = "";
@@ -322,44 +316,52 @@ public class GenericStandardDeckGameTest {
     String player3String = "";
     String player4String = "";
 
-      String[] playersHands = gameState.split("Player");
+    String[] playersHands = gameState.split("Player");
 
-      String[] player1HandBefore = playersHands[1].split(":");
-      String player1HandString = player1HandBefore[1];
-      String [] player1Hand = player1HandString.split(",");
-      for (String s : player1Hand) {
-        player1String+=s;
+    String[] player1HandBefore = playersHands[1].split(":");
+    String player1HandString = player1HandBefore[1];
+    String[] player1Hand = player1HandString.split(",");
+    for (String s : player1Hand) {
+      if (!s.equals(" \n")) {
+        fromGameState += s;
       }
+    }
 
-      String[] player2HandBefore = playersHands[2].split(":");
-      String player2HandString = player2HandBefore[1];
-      String [] player2Hand = player2HandString.split(",");
-      for (String s : player2Hand) {
-        player2String+=s;
+    String[] player2HandBefore = playersHands[2].split(":");
+    String player2HandString = player2HandBefore[1];
+    String[] player2Hand = player2HandString.split(",");
+    for (String s : player2Hand) {
+      if (!s.equals(" \n")) {
+        fromGameState += s;
       }
+    }
 
     String[] player3HandBefore = playersHands[3].split(":");
     String player3HandString = player3HandBefore[1];
-    String [] player3Hand = player3HandString.split(",");
+    String[] player3Hand = player3HandString.split(",");
     for (String s : player3Hand) {
-      player3String+=s;
+      if (!s.equals(" \n")) {
+        fromGameState += s;
+      }
     }
 
     String[] player4HandBefore = playersHands[4].split(":");
     String player4HandString = player4HandBefore[1];
-    String [] player4Hand = player4HandString.split(",");
+    String[] player4Hand = player4HandString.split(",");
     for (String s : player4Hand) {
-      player4String+=s;
+      if (!s.equals(" \n")) {
+        fromGameState += s;
+      }
     }
-    fromGameState = player4String + player2String + player1String + player3String;
-    fromGameState = fromGameState.replaceAll(" ", "");
 
-    assertEquals(fromDeck, fromGameState);
-    assertEquals(13, player1Hand.length);
-    assertEquals(13, player2Hand.length);
-    assertEquals(13, player3Hand.length);
-    assertEquals(13, player4Hand.length);
-    }
+    fromGameState = fromGameState.replaceAll(" ", "");
+    //14 with the "\n"
+      assertEquals(fromDeck, fromGameState);
+      assertEquals(player1Hand.length, 14);
+      assertEquals(player2Hand.length, 14);
+      assertEquals(player3Hand.length, 14);
+      assertEquals(player4Hand.length, 14);
+  }
 
   @Test
   public void testOnePlayer() {
@@ -384,6 +386,16 @@ public class GenericStandardDeckGameTest {
     player1String = player1String.replaceAll(" ", "");
     assertEquals(fromDeck, player1String);
 
+  }
+
+  @Test
+  public void testGameStateExpected() {
+   assertEquals("Number of players: 4\n" +
+           "Player 1: A♣, K♣, Q♣, J♣, 10♣, 9♣, 8♣, 7♣, 6♣, 5♣, 4♣, 3♣, 2♣, \n" +
+           "Player 2: A♦, K♦, Q♦, J♦, 10♦, 9♦, 8♦, 7♦, 6♦, 5♦, 4♦, 3♦, 2♦, \n" +
+           "Player 3: A♥, K♥, Q♥, J♥, 10♥, 9♥, 8♥, 7♥, 6♥, 5♥, 4♥, 3♥, 2♥, \n" +
+           "Player 4: A♠, K♠, Q♠, J♠, 10♠, 9♠, 8♠, 7♠, 6♠, 5♠, 4♠, 3♠, 2♠, \n",
+           gameCustomDeck.getGameState());
   }
 
 }
